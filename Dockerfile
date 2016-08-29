@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER s.gebler@ibak.de
 
-ENV ELASTICSEARCH_VERSION=2.3.4 GOSU_VERSION=1.9 CASSANDRA_VERSION=3.7 RBEE_AUTOKILL=true RBEE_MASTER_HOST=tasks.rbee-monitoring-master JAVA_HOME=/usr/lib/jvm/java-8-oracle
+ENV ELASTICSEARCH_VERSION=2.3.4 GOSU_VERSION=1.9 CASSANDRA_VERSION=3.7 RBEE_AUTOKILL=true RBEE_MASTER_HOST=tasks.rbee-mlog-master JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 RUN set -x \
 # Update cache
@@ -64,8 +64,8 @@ RUN set -ex \
 	&& chown -R cassandra:cassandra /etc/cassandra /var/lib/cassandra \
 	&& chmod +x /scripts/* \
 	&& mkdir -p /var/log/supervisor \
-	&& sed -i "s/# cluster\.name:.*/cluster\.name: rbee-monitoring/g" /etc/elasticsearch/elasticsearch.yml \ 
-	&& sed -i "s/cluster_name:.*/cluster_name: 'rbee-monitoring'/g" /etc/cassandra/cassandra.yaml
+	&& sed -i "s/# cluster\.name:.*/cluster\.name: rbee-mlog/g" /etc/elasticsearch/elasticsearch.yml \ 
+	&& sed -i "s/cluster_name:.*/cluster_name: 'rbee-mlog'/g" /etc/cassandra/cassandra.yaml
 
 EXPOSE 9200 9300 9042 9160
 CMD ["/usr/bin/supervisord"]
