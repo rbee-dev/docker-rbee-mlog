@@ -14,7 +14,7 @@ When using any other networking driver than overlay, the hostname for the master
 Please refer to the available environment variables to change that name.
 ##### 2.1. Start a single instance
 ```sh
-$ docker service create --name rbee-mlog-master --network rbee-mlog -p 9042:9042 -p 9200:9200 -p 9300:9300 rbee-mlog:<tag>
+$ docker service create --name rbee-mlog-master --network rbee-mlog -p 9042:9042 -p 9200:9200 -p 9300:9300 rbee/mlog:<tag>
 ```
 After a short moment the Cassandra database is reachable on port 9042 on any of the Docker-swarm hosts. Elasticsearch uses ports 9200 and 9300
 ##### 2.2 Start multiple instances
@@ -22,8 +22,8 @@ For clustering needs, we have to start two services.
 The _master_ will be used as central connection endpoint for both the Cassandra and Elasticsearch cluster. Otherwise the other instances won't be able to find each other.  
 Since we'll be starting two services, only one can have the internal ports forwarded to the default external ports.
 ```sh
-$ docker service create --name rbee-mlog-master --network rbee-mlog rbee-mlog:<tag>
-$ docker service create --name rbee-mlog-slave --network rbee-mlog -p 9042:9042 -p 9200:9200 -p 9300:9300 rbee-mlog:<tag>
+$ docker service create --name rbee-mlog-master --network rbee-mlog rbee/mlog:<tag>
+$ docker service create --name rbee-mlog-slave --network rbee-mlog -p 9042:9042 -p 9200:9200 -p 9300:9300 rbee/mlog:<tag>
 ```
 After a few moments, the rbee-mlog-slave instance should find the other for both Cassandra and Elasticsearch.  
 Furthermore, the ports 9042, 9200 and 9300 on any Docker-swarm host will forward/load-balance to any of the running rbee-mlog-slave instances.
