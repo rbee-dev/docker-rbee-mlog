@@ -1,7 +1,6 @@
 FROM ubuntu:16.04
-MAINTAINER s.gebler@ibak.de
 
-ENV ELASTICSEARCH_VERSION=2.3.4 GOSU_VERSION=1.9 CASSANDRA_VERSION=3.7 RBEE_AUTOKILL=true RBEE_MASTER_HOST=tasks.rbee-mlog-master JAVA_HOME=/usr/lib/jvm/java-8-oracle
+ENV ELASTICSEARCH_VERSION=5.0.0 GOSU_VERSION=1.9 CASSANDRA_VERSION=3.7 RBEE_AUTOKILL=true RBEE_MASTER_HOST=tasks.rbee-mlog-master JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 RUN set -x \
 # Update cache
@@ -36,7 +35,7 @@ RUN set -x \
 	&& add-apt-repository -y ppa:webupd8team/java \
 
 	&& echo "deb http://www.apache.org/dist/cassandra/debian 37x main" > /etc/apt/sources.list.d/cassandra.list \ 
-	&& echo "deb http://packages.elasticsearch.org/elasticsearch/2.x/debian stable main" > /etc/apt/sources.list.d/elasticsearch.list \
+	&& echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" > /etc/apt/sources.list.d/elasticsearch.list \
 
 	&& apt-get update && apt-get install -y  --no-install-recommends oracle-java8-installer elasticsearch="$ELASTICSEARCH_VERSION" cassandra="$CASSANDRA_VERSION" \
 

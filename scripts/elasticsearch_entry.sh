@@ -10,4 +10,4 @@ OWN_IP="$(ip route get $RBEE_MONITORING_MASTER | awk '/src/ {print $NF}')"
 echo "INFO: Using own IP $OWN_IP for default communication in elasticsearch"
 
 # Execute gosu in place of the shell, then have elasticsearch executed in place of gosu as user elasticsearch
-exec gosu elasticsearch /usr/share/elasticsearch/bin/elasticsearch --discovery.zen.ping.unicast.hosts=$RBEE_MASTER_HOST --network.publish_host=$OWN_IP
+exec gosu elasticsearch /usr/share/elasticsearch/bin/elasticsearch -E discovery.zen.ping.unicast.hosts=$RBEE_MASTER_HOST -E network.publish_host=$OWN_IP
