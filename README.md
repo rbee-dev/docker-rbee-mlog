@@ -55,6 +55,7 @@ The DNS name for the master host. When using Docker 1.12 Swarm, the hostname wit
 
 #### Elasticsearch fails
 When Elasticsearch fails with the Error message
+
 ```ERROR: bootstrap checks failed
 max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
 ```
