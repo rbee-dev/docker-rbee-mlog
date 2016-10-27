@@ -56,9 +56,8 @@ The DNS name for the master host. When using Docker 1.12 Swarm, the hostname wit
 #### Elasticsearch fails
 When Elasticsearch fails with the Error message
 
-```ERROR: bootstrap checks failed
-max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
-```
+>ERROR: bootstrap checks failed  
+>max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
 
 You need to increase the maximum map count on the Docker host(s).  
 See https://www.elastic.co/guide/en/elasticsearch/reference/5.0/vm-max-map-count.html and https://www.elastic.co/guide/en/elasticsearch/reference/5.0/_maximum_map_count_check.html
